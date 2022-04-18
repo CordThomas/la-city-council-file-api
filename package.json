@@ -1,0 +1,21 @@
+{
+  "name": "city-council-api",
+  "version": "0.1.0",
+  "description": "City Council File API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "city-council"
+  ],
+  "author": "Cord Thomas",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3",
+    "md5": "^2.3.0",
+    "sqlite3": "^5.0.3",
+    "swagger-ui-express": "^4.3.0"
+  }
+}

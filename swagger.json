@@ -1,0 +1,558 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Los Angeles City Council API",
+    "version": "0.1.0",
+    "description":
+      "Los Angeles City Council file API for exploring how our City legislates and operates.",
+    "license": {
+      "name": "MIT",
+      "url": "https://spdx.org/licenses/MIT.html"
+    },
+    "contact": {
+      "name": "Cord Thomas",
+      "url": "https://lupinex.com",
+      "email": "cord.thomas@gmail.com"
+    }
+  },
+  "paths": {
+    "/api/councilactions" : {
+     "get": {
+       "tags": ["CouncilActions"],
+       "summary": "Get the most recent 10 council actions",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilAction"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilactions/file/:cf_num" : {
+     "get": {
+       "tags": ["CouncilActions"],
+       "summary": "Get all council actions related to council file 'cf_number'",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilAction"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilactions/description_contains/{match_text}" : {
+     "get": {
+       "tags": ["CouncilActions"],
+       "summary": "Get all council actions with a description containing 'match_text'",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilAction"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilmembers" : {
+     "get": {
+       "tags": ["CouncilMembers"],
+       "summary": "Get all active council members",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilMember"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilmembers/in_office_on/{office_date}" : {
+     "get": {
+       "tags": ["CouncilMembers"],
+       "summary": "Get all council members in office on 'office_date'",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilMember"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilfiles" : {
+     "get": {
+       "tags": ["CouncilFiles"],
+       "summary": "Get all council files",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilFile"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilfiles/file/{cf_num}" : {
+     "get": {
+       "tags": ["CouncilFiles"],
+       "summary": "Get council file identified by 'cf_num'",
+       "parameters": [{
+           "name": "cf_num",
+           "in": "path",
+           "description": "The council file number (e.g., 19-0343)",
+           "required": true,
+           "type": "string"
+       }],
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilFile"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilfiles/title_contains/{match_text}" : {
+     "get": {
+       "tags": ["CouncilFiles"],
+       "summary": "Get all council files with a title matching the 'match_text'",
+       "parameters": [
+         {
+           "name": "match_text",
+           "in": "path",
+           "description": "Text snipped to find in council file titles (e.g., 'safe street', 'sustainable'",
+           "required": true,
+           "type": "string"
+       }],
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilFile"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilfiles/since/{start_date}" : {
+     "get": {
+       "tags": ["CouncilFiles"],
+       "summary": "Get all council files since the 'start_date'",
+       "parameters": [
+         {
+           "name": "start_date",
+           "in": "path",
+           "description": "The date from which to start in ISO format (e.g., 2020-04-12)",
+           "required": true,
+           "type": "string",
+           "format": "date"
+         }],
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilFile"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilfiles/between/{start_date}/{:}end_date}" : {
+     "get": {
+       "tags": ["CouncilFiles"],
+       "summary": "Get all council files between 'start_date' and 'end_date' inclusive",
+       "parameters": [
+         {
+           "name": "start_date",
+           "in": "path",
+           "description": "The date from which to start the search in ISO format (e.g., 2020-04-12)",
+           "required": true,
+           "type": "string",
+           "format": "date"
+         },
+       {
+           "name": "end_date",
+           "in": "path",
+           "description": "The date to which to end the search in ISO format (e.g., 2021-04-12)",
+           "required": true,
+           "type": "string",
+           "format": "date"
+       }],
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilFile"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilfiles/topics/{topics}" : {
+       "get": {
+         "tags": ["CouncilFiles"],
+         "summary": "Get all council files that pertain to the topic ID 'topics'",
+         "parameters": [
+           {
+             "name": "topics",
+             "in": "path",
+             "description": "The list of topics to find council files for (e.g., 3, 5)",
+             "required": true,
+             "type": "integer",
+             "format": "int64"
+           }],
+         "responses": {
+           "200": {
+             "description": "OK",
+             "schema": {
+               "$ref": "#/definitions/CouncilFile"
+             }
+           }
+         }
+       }
+     },
+    "/api/councildocuments": {
+       "get": {
+         "tags": ["CouncilDocuments"],
+         "summary": "Get all council file documents",
+         "responses": {
+           "200": {
+             "description": "OK",
+             "schema": {
+               "$ref": "#/definitions/CouncilDocument"
+             }
+           }
+         }
+       }
+    },
+    "/api/legislativetopics" : {
+     "get": {
+       "tags": ["LegislativeTopics"],
+       "summary": "Get the list of legislative topics and their associated keywords",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/LegislativeTopic"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilvotes" : {
+     "get": {
+       "tags": ["CouncilVotes"],
+       "summary": "Get the list of most recent 10 council votes",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilVote"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilvotes/file/:cf_num" : {
+     "get": {
+       "tags": ["CouncilVotes"],
+       "summary": "Get the council vote result related to the council file, 'cf_number'",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilVote"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilvoteresults" : {
+     "get": {
+       "tags": ["CouncilVoteResults"],
+       "summary": "Get the list of most recent 10 council vote results",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilVoteResult"
+           }
+         }
+       }
+     }
+    },
+    "/api/councilvoteresults/file/:cf_num" : {
+     "get": {
+       "tags": ["CouncilVoteResults"],
+       "summary": "Get the council votes related to the council file, 'cf_number'",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/CouncilVoteResult"
+           }
+         }
+       }
+     }
+    }
+  },
+  "definitions": {
+    "CouncilAction": {
+      "type": "object",
+      "required": ["cf_number", "action_date", "description"],
+      "properties": {
+        "cf_number": {
+          "type": "string",
+          "description": "The council file number in the format, YY-NNNN issued serially throughout the year and there is no gaurantee that they all exist"
+        },
+        "action_date": {
+          "type": "string",
+          "description": "The date the action was recorded."
+        },
+        "description":  {
+          "type": "string",
+          "description": "The description of the action"
+        }
+      }
+    },
+    "CouncilDocument": {
+      "type": "object",
+      "required": ["cf_number", "action_date", "title", "file_name"],
+      "properties": {
+        "cf_number": {
+          "type": "string",
+          "description": "The council file number in the format, YY-NNNN issued serially throughout the year and there is no gaurantee that they all exist"
+        },
+        "action_date": {
+          "type": "string",
+          "description": "The data the document was submitted to the council file."
+        },
+        "title":  {
+          "type": "string",
+          "description": "The name of the document"
+        },
+        "file_name": {
+          "type": "string",
+          "description": "The name of the file, typically a PDF"
+        }
+      }
+    },
+    "CouncilFile": {
+      "type": "object",
+      "required": ["cf_number", "date_received", "date_last_changed", "mover", "title"],
+      "properties": {
+       "cf_number": {
+         "type": "string",
+         "description": "The council file number in the format, YY-NNNN issued serially throughout the year and there is no gaurantee that they all exist"
+       },
+       "council_district": {
+         "type": "array",
+         "items": {
+           "type": "string",
+           "description": "List of council districts this motion or action relates to.  Can be null, a single council district number or a list of districts."
+         }
+       },
+       "direct_to_council": {
+         "type": "boolean",
+         "description": "Whether the motion went directly to council, bypassing a committee(s)"
+       },
+       "date_expiration": {
+         "type": "string",
+         "format": "date",
+         "description": "The date the council file will expire.  ISO format."
+       },
+       "date_received": {
+         "type": "string",
+         "format": "date",
+         "description": "The date the council file was received.  ISO format."
+       },
+       "date_last_changed": {
+         "type": "string",
+         "format": "date",
+         "description": "The date the council file was last updated including new documents attached, status changed, vote made.  ISO format."
+       },
+       "initiated_by": {
+         "type": "string",
+         "description": "The committe or City department that initiated the file (?)."
+       },
+       "mover": {
+         "type": "string",
+         "description": "The City Council Member that initiated (or moved) the council file."
+       },
+       "mover_comment": {
+         "type": "string",
+         "description": "Comments made by the mover.   Seems to be a mixed bag of information, typically just a few words (e.g., Garcetti for Smith)"
+       },
+       "pending_committee": {
+         "type": "string",
+         "description": "The committe the motion is headed to."
+       },
+       "reference_recs": {
+         "type": "string",
+         "description": "Reference numbers for related City department / committee or other."
+       },
+       "second": {
+         "type": "string",
+         "description": "The City Council Member seconding the motion."
+       },
+       "title": {
+         "type": "string",
+         "description": "The name or label of the council file."
+       },
+       "reward_amount": {
+         "type": "number",
+         "format": "float",
+         "description": "The amount of the reward the City is offering for information related to a crime, typically a murder and typically the amount is $50,000."
+       },
+       "reward_duration":{
+         "type": "string",
+         "description": "The number of days the reward is to last for, typically 180 days."
+       },
+       "reward_publish_date": {
+         "type": "string",
+         "format": "date",
+         "description": "The date the award was authorized."
+       },
+       "reward_expire_date": {
+         "type": "string",
+         "format": "date",
+         "description": "The date the award was set to expire."
+       },
+       "subject": {
+         "type": "string",
+         "description": "The alternative title of the council file - largely stopped using in 2017."
+       }
+      },
+      "example": {
+       "cf_number": "20-0165",
+       "council_district": "null",
+       "direct_to_council": "null",
+       "date_expiration": "2022-04-20",
+       "date_last_changed": "2020-04-23",
+       "date_received": "2020-02-06",
+       "initiated_by": "City Ethics Commission",
+       "mover": "null",
+       "mover_comment": "null",
+       "pending_committee": "null",
+       "reference_recs": "01-2467",
+       "second": "null",
+       "title": "Department of Recreation and Parks /Conflict of Interests (COI) Code / Amendment",
+       "reward_amount": "null",
+       "reward_duration": "null",
+       "reward_publish_date": "null",
+       "reward_expire_date": "null",
+       "subject": "null"
+      }
+      },
+    "CouncilMember": {
+      "type": "object",
+      "required": ["district_n", "name_last", "name_first", "start_date", "mover_name"],
+      "properties": {
+        "district_n": {
+          "type": "number",
+          "format": "integer",
+          "description": "The council district number."
+        },
+        "name_last": {
+          "type": "string",
+          "description": "The member's last name."
+        },
+        "name_first":  {
+          "type": "string",
+          "description": "The member's first name."
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the member started office."
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the member left office.  If null, then they are currently in office."
+        },
+        "mover_name": {
+          "type": "string",
+          "description": "The name of the member as it is represented in the council file mover/second field."
+        }
+      }
+    },
+    "CouncilVote": {
+      "type": "object",
+      "required": ["cf_number", "meeting_date", "meeting_type", "vote_action"],
+      "properties": {
+        "cf_number": {
+          "type": "string",
+          "description": "The council file number in the format, YY-NNNN issued serially throughout the year and there is no gaurantee that they all exist"
+        },
+        "meeting_date": {
+          "type": "string",
+          "description": "The date the action was recorded."
+        },
+        "meeting_type":  {
+          "type": "string",
+          "description": "The description of the action"
+        },
+        "vote_action":  {
+          "type": "string",
+          "description": "The disposition of the vote (e.g., adopted, no action taken)"
+        }
+      }
+    },
+    "CouncilVoteResult": {
+      "type": "object",
+      "required": ["cf_number", "council_district", "council_member", "vote"],
+      "properties": {
+        "cf_number": {
+          "type": "string",
+          "description": "The council file number in the format, YY-NNNN issued serially throughout the year and there is no gaurantee that they all exist"
+        },
+        "council_district": {
+          "type": "string",
+          "description": "The voting member's council district number."
+        },
+        "council_member":  {
+          "type": "string",
+          "description": "The name of the voting council member."
+        },
+        "vote":  {
+          "type": "string",
+          "description": "The vote cast (YES, NO, ABSENT)."
+        }
+      }
+    },
+    "LegislativeTopic": {
+      "type": "object",
+      "required": ["topic_id", "topic_label", "topic_keywords"],
+      "properties": {
+        "topic_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The topic's unique identifier."
+        },
+        "topic_label": {
+          "type": "string",
+          "description": "The topic label."
+        },
+        "topic_keywords":  {
+          "type": "string",
+          "description": "The query-structured keywords used to map council files to topics."
+        }
+      }
+    },
+  },
+  "host": "localhost:8888",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"]
+}
