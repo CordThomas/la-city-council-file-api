@@ -52,3 +52,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Cord Thomas - [LinkedIn](https://www.linkedin.com/in/cordthomas/) - cord.thomas@gmail.com
 
 Project Link: [https://github.com/CordThomas/la-city-council-extractor](https://github.com/CordThomas/la-city-council-extractor)
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/cordthomas/
