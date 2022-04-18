@@ -41,7 +41,7 @@ The script is run as a node server
 
 from within the script directory, run:
 
-node server.js
+```node server.js```
 
 ## License
 
