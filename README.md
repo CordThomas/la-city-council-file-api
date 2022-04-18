@@ -14,7 +14,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#processing">Processing</a></li>
+    <li><a href="#relieson">Relies On</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
@@ -52,6 +52,10 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Cord Thomas - [LinkedIn](https://www.linkedin.com/in/cordthomas/) - cord.thomas@gmail.com
 
 Project Link: [https://github.com/CordThomas/la-city-council-extractor](https://github.com/CordThomas/la-city-council-extractor)
+
+## Relies On
+
+The API relies on a sqlite database with the ~50,000 City Council File records extracted since 2000.   This database is populated by the Python scripts in this project:  https://github.com/CordThomas/la-city-council-extractor
 
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
