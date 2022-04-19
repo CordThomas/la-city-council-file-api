@@ -548,7 +548,7 @@
           "description": "The query-structured keywords used to map council files to topics."
         }
       }
-    },
+    }
   },
   "host": "localhost:8888",
   "basePath": "/",
