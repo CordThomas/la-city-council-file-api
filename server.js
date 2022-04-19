@@ -7,8 +7,6 @@ const express = require("express"),
     swaggerDocument = require('./swagger.json'),
     app = express();
 
-module.exports = app;
-
 // Server port
 const HTTP_PORT = 8888;
 
@@ -29,6 +27,11 @@ app.use("/api/legislativetopics", ltRoutes);
 app.use("/api/councilvotes", cvRoutes);
 app.use("/api/councilvoteresults", cvrRoutes);
 
+// Root endpoint
+app.get("/", (req, res, next) => {
+    res.json({"message": "Ok"})
+});
+
 app.use(
   "/api-docs",
   swaggerUI.serve,
@@ -43,3 +46,5 @@ app.listen(HTTP_PORT, () => {
 app.use(function(req, res){
     res.status(404);
 });
+
+module.exports = app;

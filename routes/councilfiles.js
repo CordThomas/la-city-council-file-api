@@ -2,11 +2,6 @@ const db = require('../database.js');
 const express = require('express'),
     router = express.Router();
 
-// Root endpoint
-router.get("/", (req, res, next) => {
-    res.json({"message": "Ok"})
-});
-
 // Insert here other API endpoints
 router.get("/", (req, res, next) => {
     let sql = "select * from council_file ORDER BY date_received DESC LIMiT 10"
