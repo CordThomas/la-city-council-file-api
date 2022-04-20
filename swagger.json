@@ -30,7 +30,7 @@
        }
      }
     },
-    "/api/councilactions/file/:cf_num" : {
+    "/api/councilactions/file/{cf_num}" : {
      "get": {
        "tags": ["CouncilActions"],
        "summary": "Get all council actions related to council file 'cf_number'",
@@ -166,7 +166,7 @@
        }
      }
     },
-    "/api/councilfiles/between/{start_date}/{:}end_date}" : {
+    "/api/councilfiles/between/{start_date}/{end_date}" : {
      "get": {
        "tags": ["CouncilFiles"],
        "summary": "Get all council files between 'start_date' and 'end_date' inclusive",
@@ -262,7 +262,7 @@
        }
      }
     },
-    "/api/councilvotes/file/:cf_num" : {
+    "/api/councilvotes/file/{cf_num}" : {
      "get": {
        "tags": ["CouncilVotes"],
        "summary": "Get the council vote result related to the council file, 'cf_number'",
@@ -290,7 +290,7 @@
        }
      }
     },
-    "/api/councilvoteresults/file/:cf_num" : {
+    "/api/councilvoteresults/file/{cf_num}" : {
      "get": {
        "tags": ["CouncilVoteResults"],
        "summary": "Get the council votes related to the council file, 'cf_number'",
