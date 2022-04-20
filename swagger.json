@@ -34,6 +34,13 @@
      "get": {
        "tags": ["CouncilActions"],
        "summary": "Get all council actions related to council file 'cf_number'",
+       "parameters": [{
+           "name": "cf_num",
+           "in": "path",
+           "description": "The council file number (e.g., 19-0343)",
+           "required": true,
+           "type": "string"
+       }],
        "responses": {
          "200": {
            "description": "OK",
@@ -48,6 +55,14 @@
      "get": {
        "tags": ["CouncilActions"],
        "summary": "Get all council actions with a description containing 'match_text'",
+       "parameters": [
+         {
+           "name": "match_text",
+           "in": "path",
+           "description": "Text snipped to find in council file titles (e.g., 'safe street', 'sustainable'",
+           "required": true,
+           "type": "string"
+       }],
        "responses": {
          "200": {
            "description": "OK",
@@ -266,6 +281,13 @@
      "get": {
        "tags": ["CouncilVotes"],
        "summary": "Get the council vote result related to the council file, 'cf_number'",
+       "parameters": [{
+           "name": "cf_num",
+           "in": "path",
+           "description": "The council file number (e.g., 19-0343)",
+           "required": true,
+           "type": "string"
+       }],
        "responses": {
          "200": {
            "description": "OK",
@@ -294,6 +316,13 @@
      "get": {
        "tags": ["CouncilVoteResults"],
        "summary": "Get the council votes related to the council file, 'cf_number'",
+       "parameters": [{
+           "name": "cf_num",
+           "in": "path",
+           "description": "The council file number (e.g., 19-0343)",
+           "required": true,
+           "type": "string"
+       }],
        "responses": {
          "200": {
            "description": "OK",

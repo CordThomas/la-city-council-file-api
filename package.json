@@ -15,7 +15,8 @@
   "dependencies": {
     "express": "^4.17.3",
     "md5": "^2.3.0",
-    "sqlite3": "^5.0.3",
+    "sqlite3": "^5.0.4",
+    "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.3.0"
   }
 }
