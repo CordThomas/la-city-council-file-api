@@ -1,4 +1,3 @@
-// Create express app
 // https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
 const express = require("express"),
     bodyParser = require("body-parser"),
@@ -27,8 +26,11 @@ app.use("/api/legislativetopics", ltRoutes);
 app.use("/api/councilvotes", cvRoutes);
 app.use("/api/councilvoteresults", cvrRoutes);
 
+// let fullUrl = req.originalUrl;
+// console.log("Requested " + fullUrl);
+
 // Root endpoint
-app.get("/", (req, res, next) => {
+app.get("/status", (req, res, next) => {
     res.json({"message": "Ok"})
 });
 

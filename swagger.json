@@ -579,9 +579,8 @@
       }
     }
   },
-  "host": "localhost:8888",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "consumes": ["application/json"],
   "produces": ["application/json"]
 }
